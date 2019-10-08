@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin" />
+    <meta property="og:description" content="1.urlopen()方法urllib.urlopen(url[, data[, proxies]]) :创建一个表示远程url的类文件对象，然后像本地文件一样操作这个类文件对象来获取远程数据。参数u" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>Python urllib模块urlopen()与urlretrieve()详解 - qqhfeng16 - 博客园</title>
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=HrvK75b61-WJQPXtn_liCIWUC4EcnwT_lmrRbncieJo" />
+    <link id="MainCss" rel="stylesheet" href="/skins/arrow/bundle-arrow.min.css?v=zEFWKHfJ4zsITVTBWJzcB3vtpdiYBYZ1yxrqmdqBnQc" />
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/arrow/bundle-arrow-mobile.min.css?v=lQBi7gS1qxIiOTIvBi4tdgttckuECe4wjksg5fFRzW4" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/qqhfeng/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/qqhfeng/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/qqhfeng/wlwmanifest.xml" />
+    <script src="https://common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+    <script src="/js/blog-common.min.js?v=qxe3MTML1_SisOYVwTJTDPxtBSyGjHBAu3qLg57iZ2k"></script>
+    <script>
+        var currentBlogId = 61498;
+        var currentBlogApp = 'qqhfeng';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+    </script>
+    
+    
+    
+</head>
+<body>
+    <a name="top"></a>
+    
+    <!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/qqhfeng/">挣脱生命的束缚...</a>
+<br>
+		
+让我们一块来努力！
+
+	</div>
+</div>
+
+
+</div>
+<div id="mylinks">
+<!--done-->
+<a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+&nbsp;&nbsp;&nbsp;
+
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/qqhfeng/">
+首页</a>
+&nbsp;&nbsp;&nbsp;
+
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+&nbsp;&nbsp;&nbsp;
+
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/qqhfeng16">
+联系</a>&nbsp;&nbsp;&nbsp;
+
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/qqhfeng/rss/">
+订阅</a>
+<a id="blog_nav_rss_image" href="https://www.cnblogs.com/qqhfeng/rss/">
+    <img src="/skins/arrow/images/xml.gif" alt="订阅" />
+</a>&nbsp;&nbsp;&nbsp;
+
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+
+
+</div>
+<div id="mytopmenu">
+	
+		<div class="blogStats">随笔 - 
+642&nbsp;
+文章 - 
+20&nbsp;评论 - 
+28&nbsp;trackbacks - 
+0
+</div>
+
+
+	
+</div>
+<div id="leftcontent">
+	
+		<DIV id="leftcontentcontainer">
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script><br>
+			
+<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+
+			<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script></DIV>		
+	
+</div>
+<div id="centercontent">
+	<!--done-->
+<div id="post_detail">
+    <div class="post">
+        <div class="postTitle">
+            <h1>
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/qqhfeng/p/5785373.html">Python urllib模块urlopen()与urlretrieve()详解</a>
+</h1>
+        </div>
+        
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <p><span style="font-size: 15px;"><strong>1.urlopen()方法<br /></strong>urllib.urlopen(url[, data[, proxies]]) :创建一个表示远程url的类文件对象，然后像本地文件一样操作这个类文件对象来获取远程数据。</span><br /><span style="font-size: 15px;">参数url表示远程数据的路径，一般是网址；</span><br /><span style="font-size: 15px;">参数data表示以post方式提交到url的数据(玩过web的人应该知道提交数据的两种方式：post与get。如果你不清楚，也不必太在意，一般情况下很少用到这个参数)；</span><br /><span style="font-size: 15px;">参数proxies用于设置代理。</span><br /><span style="font-size: 15px;">urlopen返回 一个类文件对象，它提供了如下方法：</span><br /><span style="font-size: 15px;">read() , readline() , readlines() , fileno() , close() ：这些方法的使用方式与文件对象完全一样;</span><br /><span style="font-size: 15px;">info()：返回一个httplib.HTTPMessage 对象，表示远程服务器返回的头信息</span><br /><span style="font-size: 15px;">getcode()：返回Http状态码。如果是http请求，200表示请求成功完成;404表示网址未找到；</span><br /><span style="font-size: 15px;">geturl()：返回请求的url；</span><br /><span style="font-size: 15px;">代码示例：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+url </span>= <span style="color: #800000;">"</span><span style="color: #800000;">http://www.baidu.com/</span><span style="color: #800000;">"</span>
+<span style="color: #008000;">#</span><span style="color: #008000;">urlopen()</span>
+sock =<span style="color: #000000;"> urllib.urlopen(url)
+htmlCode </span>=<span style="color: #000000;"> sock.read()
+sock.close
+fp </span>= open(<span style="color: #800000;">"</span><span style="color: #800000;">e:/1.html</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">wb</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+fp.write(htmlCode)
+fp.close
+</span><span style="color: #008000;">#</span><span style="color: #008000;">urlretrieve()</span>
+urllib.urlretrieve(url, <span style="color: #800000;">'</span><span style="color: #800000;">e:/2.html</span><span style="color: #800000;">'</span>)</pre>
+</div>
+<p><strong>2.urlretrieve方法<br /></strong>直接将远程数据下载到本地。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">urllib.urlretrieve(url[, filename[, reporthook[, data]]])
+参数说明：
+url：外部或者本地url
+filename：指定了保存到本地的路径（如果未指定该参数，urllib会生成一个临时文件来保存数据）；
+reporthook：是一个回调函数，当连接上服务器、以及相应的数据块传输完毕的时候会触发该回调。我们可以利用这个回调函数来显示当前的下载进度。
+data：指post到服务器的数据。该方法返回一个包含两个元素的元组(filename, headers)，filename表示保存到本地的路径，header表示服务器的响应头。</span></pre>
+</div>
+<p>下面通过例子来演示一下这个方法的使用，这个例子将新浪首页的html抓取到本地，保存在D:/sina.html文件中，同时显示下载的进度。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> callbackfunc(blocknum, blocksize, totalsize):
+    </span><span style="color: #800000;">'''</span><span style="color: #800000;">回调函数
+    @blocknum: 已经下载的数据块
+    @blocksize: 数据块的大小
+    @totalsize: 远程文件的大小
+    </span><span style="color: #800000;">'''</span><span style="color: #000000;">
+    percent </span>= 100.0 * blocknum * blocksize /<span style="color: #000000;"> totalsize
+    </span><span style="color: #0000ff;">if</span> percent &gt; 100<span style="color: #000000;">:
+        percent </span>= 100
+    <span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">%.2f%%</span><span style="color: #800000;">"</span>%<span style="color: #000000;"> percent
+url </span>= <span style="color: #800000;">'</span><span style="color: #800000;">http://www.sina.com.cn</span><span style="color: #800000;">'</span><span style="color: #000000;">
+local </span>= <span style="color: #800000;">'</span><span style="color: #800000;">d:\\sina.html</span><span style="color: #800000;">'</span><span style="color: #000000;">
+urllib.urlretrieve(url, local, callbackfunc)</span></pre>
+</div>
+<p>&nbsp;</p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+        <div class="postDesc">posted on 
+<span id="post-date">2016-08-18 21:02</span>&nbsp;<a href="https://www.cnblogs.com/qqhfeng/">qqhfeng16</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>) <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5785373" rel="nofollow"> 编辑</a> <a href="javascript:void(0)" onclick="AddToWz(5785373); return false;">收藏</a>
+</div>
+    </div>
+</div>
+
+<script src="https://common.cnblogs.com/highlight/9.12.0/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 61498, cb_blogApp = 'qqhfeng', cb_blogUserGuid = '88ebe34e-f1af-de11-ba8f-001cf0cd104b';
+    var cb_entryId = 5785373, cb_entryCreatedDate = '2016-08-18 21:02', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;"></div>
+    </div>
+    <div id="under_post_news"></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+            <script>
+                if (new Date() >= new Date(2018, 9, 13)) {
+                    googletag.cmd.push(function () { googletag.display("div-gpt-ad-1539008685004-0"); });
+                }
+            </script>
+        </div>
+    </div>
+    <div id="under_post_kb"></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+
+	<!--done-->
+<div class="footer">
+	Copyright &copy; 2019 qqhfeng16
+<br /><span id="poweredby">Powered by .NET Core 3.0 Preview 8 on Linux</span>
+ Powered by: <a href="http://www.cnblogs.com" class="footerlink">博客园</a> 模板提供：<a href="http://blog.hjenglish.com" class="footerlink">沪江博客</a><br>
+</div>
+
+
+</div>
+
+
+
+
+    
+</body>
+</html>
